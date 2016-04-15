@@ -2,3 +2,23 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
+
+.nav {
+	width: 100%;
+    position: fixed;
+    bottom: 0px;
+}
+
+.nav a {
+	color: white;
+	text-decoration: none;
+}
+
+.nav div {
+	width: 25%;
+	float: right;
+	background-color: black;
+	color: white;
+	padding: 25px 0;
+	text-align: center;
+}

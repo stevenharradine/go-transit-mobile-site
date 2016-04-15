@@ -5,6 +5,13 @@ var request    = require("request")
 var fs         = require('fs')
 var PORT       = 8080
 
+var navigation  = "<div class='nav'>"
+    navigation += '<div><a href="/departures">Union Departures</a></div>'
+    navigation += '<div><a href="/alerts">Service Alerts</a></div>'
+    navigation += '<div>Train Schedules</div>'
+    navigation += '<div>Bus Schedules</div>'
+    navigation += "</div>"
+
 var server = http.createServer(function (req, res){
     dispatcher.dispatch(req, res);
 });
@@ -30,9 +37,40 @@ dispatcher.onGet("/departures", function(req, res) {
                 html += "</div>"
                 html += '<div class="tbldiv data" style="width: 700px">'
                 html += $(".leftContainerHome").find (".tbldiv").next().html()
+                html += "</div>"
+                html += navigation
                 html += '<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>'
                 html += '<script src="function.js"></script>'
+                html += '</body></html>'
+
+            res.write (html)
+            res.end()
+          } catch (error) {
+            res.write (error)
+            res.end()
+          }
+    });
+});
+
+
+dispatcher.onGet("/alerts", function(req, res) {
+    res.writeHead(200, {'Content-Type': 'text/html'})
+
+    request({
+      uri: "http://www.gotransit.com/publicroot/en/updates/servicestatus.aspx",
+    }, function(error, response, body) {
+        try {
+            var $ = cheerio.load(body)
+            var html  = '<html><head>'
+                html += '<link rel="stylesheet" type="text/css" href="http://www.gotransit.com/MasterPages/css/serviceUpdate.css"/></head><body>'
+                html += '<link rel="stylesheet" type="text/css" href="styles.css"/></head><body>'
+                html += '<meta http-equiv="Refresh" content="60" />'
+                html += '<div class="gridStatusTrain" style="width: 263px">'
+                html += $("#serviceTable").html()
                 html += "</div>"
+                html += navigation
+                html += '<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>'
+                html += '<script src="function.js"></script>'
                 html += '</body></html>'
 
             res.write (html)

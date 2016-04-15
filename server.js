@@ -23,10 +23,15 @@ dispatcher.onGet("/departures", function(req, res) {
             var $ = cheerio.load(body)
             var html  = '<html><head>'
                 html += '<link rel="stylesheet" type="text/css" href="http://www.gotransit.com/css/departures.css"/></head><body>'
+                html += '<link rel="stylesheet" type="text/css" href="styles.css"/></head><body>'
                 html += '<meta http-equiv="Refresh" content="60" />'
-                html += '<div class"tbldiv" style="width: 700px">'
+                html += '<div class="tbldiv" style="width: 700px">'
                 html += $(".leftContainerHome").find (".tbldiv").html()
+                html += "</div>"
+                html += '<div class="tbldiv data" style="width: 700px">'
                 html += $(".leftContainerHome").find (".tbldiv").next().html()
+                html += '<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>'
+                html += '<script src="function.js"></script>'
                 html += "</div>"
                 html += '</body></html>'
 

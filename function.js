@@ -1,8 +1,13 @@
 function showme (type) {
+	var counter = 0;
+
 	$(".data").find("table").each (function (index, item) {
 	  $(this).show()
+
 	  if ($(this).html().indexOf(type) < 0) {
 	    $(this).hide()
+	  } else {
+	    $(this).find("tr").removeClass("tblrow").removeClass("tblaltrow").addClass(counter++ % 2 === 0 ? "tblrow" : "tblaltrow")
 	  }
 	})
 
@@ -22,15 +27,15 @@ $(".nav a").each (function (index, item) {
 
 $('.showTrain').bind ("click", function (e) {
 	e.preventDefault()
-	localStorage.setItem('show','train')
 
+	localStorage.setItem('show','train')
 	showme("Train")
 })
 
 $('.showBus').bind ("click", function (e) {
 	e.preventDefault()
-	localStorage.setItem('show','bus')
 
+	localStorage.setItem('show','bus')
 	showme("Bus")
 })
 

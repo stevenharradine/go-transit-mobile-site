@@ -5,7 +5,20 @@ function showme (type) {
 	    $(this).hide()
 	  }
 	})
+
+	$(".nav-level-2 a").each (function (index, item) {
+	  $(this).removeClass("selected")
+	  if ($(this).html().toLowerCase().indexOf (localStorage.getItem('show')) >= 0) {
+	    $(this).addClass("selected")
+	  }
+	})
 }
+
+$(".nav a").each (function (index, item) {
+  if ($(this).attr("href") === location.pathname) {
+    $(this).addClass("selected")
+  }
+})
 
 $('.showTrain').bind ("click", function (e) {
 	e.preventDefault()

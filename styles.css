@@ -21,7 +21,7 @@ html, body {
 	background-color: black;
 }
 
-.nav a:hover, .nav-level-2 a:hover {
+.nav a:hover, .nav-level-2 a:hover, .nav a.selected, .nav-level-2 a.selected {
 	background-color: #033f00;
 }
 

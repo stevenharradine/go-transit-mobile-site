@@ -18,6 +18,11 @@ server.listen(PORT, '0.0.0.0', function(){
     console.log("Server listening on: http://localhost:%s", PORT);
 });
 
+dispatcher.onGet("/", function(req, res) {
+    res.writeHead(302, {'Location': '/alerts'});
+    res.end();
+})
+
 dispatcher.onGet("/departures", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'})
 

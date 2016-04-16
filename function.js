@@ -19,26 +19,7 @@ function showme (type) {
 	})
 }
 
-$(".nav a").each (function (index, item) {
-  if ($(this).attr("href") === location.pathname) {
-    $(this).addClass("selected")
-  }
-})
-
-$('.showTrain').bind ("click", function (e) {
-	e.preventDefault()
-
-	localStorage.setItem('show','train')
-	showme("Train")
-})
-
-$('.showBus').bind ("click", function (e) {
-	e.preventDefault()
-
-	localStorage.setItem('show','bus')
-	showme("Bus")
-})
-
+// filter results from previous session
 var show = localStorage.getItem('show')
 if (show !== null) {
 	if (show === "train") {
@@ -47,3 +28,22 @@ if (show !== null) {
 		showme ("Bus")
 	}
 }
+
+// departures filtering buttons
+function showDeparturesClickBinding (type) {
+	$('.show' + type).bind ("click", function (e) {
+		e.preventDefault()
+
+		localStorage.setItem('show',type.toLowerCase())
+		showme(type)
+	})
+}
+showDeparturesClickBinding ("Train")
+showDeparturesClickBinding ("Bus")
+
+// highlight primary nav
+$(".nav a").each (function (index, item) {
+  if ($(this).attr("href") === location.pathname) {
+    $(this).addClass("selected")
+  }
+})

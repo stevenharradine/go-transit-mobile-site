@@ -7,18 +7,27 @@ html, body {
 	width: 100%;
     position: fixed;
     bottom: 0px;
+    font-size: 15px;
 }
 
-.nav a {
+.nav a, .nav-level-2 a {
+	float: right;
+	width: 50%;
+	text-align: center;
 	color: white;
 	text-decoration: none;
-}
-
-.nav div {
-	width: 25%;
-	float: right;
-	background-color: black;
 	color: white;
 	padding: 25px 0;
-	text-align: center;
+	background-color: black;
+}
+
+.nav a:hover, .nav-level-2 a:hover {
+	background-color: #033f00;
+}
+
+.nav-level-2 {
+	width: 100%;
+	position: fixed;
+	bottom: 65px;
+	z-index: 100;
 }

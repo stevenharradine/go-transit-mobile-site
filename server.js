@@ -6,10 +6,8 @@ var fs         = require('fs')
 var PORT       = 8080
 
 var navigation  = "<div class='nav'>"
-    navigation += '<div><a href="/departures">Union Departures</a></div>'
-    navigation += '<div><a href="/alerts">Service Alerts</a></div>'
-    navigation += '<div>Train Schedules</div>'
-    navigation += '<div>Bus Schedules</div>'
+    navigation += '<a href="/departures">Union Departures</a>'
+    navigation += '<a href="/alerts">Service Alerts</a>'
     navigation += "</div>"
 
 var server = http.createServer(function (req, res){
@@ -29,14 +27,20 @@ dispatcher.onGet("/departures", function(req, res) {
         try {
             var $ = cheerio.load(body)
             var html  = '<html><head>'
-                html += '<link rel="stylesheet" type="text/css" href="http://www.gotransit.com/css/departures.css"/></head><body>'
-                html += '<link rel="stylesheet" type="text/css" href="styles.css"/></head><body>'
+                html += '<link rel="stylesheet" type="text/css" href="http://www.gotransit.com/css/departures.css"/>'
+                html += '<link rel="stylesheet" type="text/css" href="styles.css"/>'
+                html += '<meta name="viewport" content="width=device-width, initial-scale=1">'
                 html += '<meta http-equiv="Refresh" content="60" />'
+                html += '</head><body>'
                 html += '<div class="tbldiv" style="width: 700px">'
                 html += $(".leftContainerHome").find (".tbldiv").html()
                 html += "</div>"
                 html += '<div class="tbldiv data" style="width: 700px">'
                 html += $(".leftContainerHome").find (".tbldiv").next().html()
+                html += "</div>"
+                html += "<div class='nav-level-2'>"
+                html += '<a href="#" class="showTrain">Train Schedules</a>'
+                html += '<a href="#" class="showBus">Bus Schedules</a>'
                 html += "</div>"
                 html += navigation
                 html += '<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>'
@@ -62,9 +66,11 @@ dispatcher.onGet("/alerts", function(req, res) {
         try {
             var $ = cheerio.load(body)
             var html  = '<html><head>'
-                html += '<link rel="stylesheet" type="text/css" href="http://www.gotransit.com/MasterPages/css/serviceUpdate.css"/></head><body>'
-                html += '<link rel="stylesheet" type="text/css" href="styles.css"/></head><body>'
+                html += '<link rel="stylesheet" type="text/css" href="http://www.gotransit.com/MasterPages/css/serviceUpdate.css"/>'
+                html += '<link rel="stylesheet" type="text/css" href="styles.css"/>'
+                html += '<meta name="viewport" content="width=device-width, initial-scale=1">'
                 html += '<meta http-equiv="Refresh" content="60" />'
+                html += '</head><body>'
                 html += '<div class="gridStatusTrain" style="width: 263px">'
                 html += $("#serviceTable").html()
                 html += "</div>"

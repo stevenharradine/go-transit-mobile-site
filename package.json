@@ -1,0 +1,10 @@
+{
+  "name": "go-transit-mobile-site",
+  "description": "Reads GO Transits website and transform the relevant information into a useful mobile site",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "httpdispatcher": "*",
+    "cheerio": "*"
+  }
+}

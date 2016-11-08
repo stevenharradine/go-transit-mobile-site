@@ -5,12 +5,26 @@ var request    = require("request")
 var fs         = require('fs')
 var PORT       = 8080
 
+var styles
+var functions
+
 var navigation  = "<div class='nav'>"
     navigation += '<a href="/departures">Union Departures</a>'
     navigation += '<a href="/alerts">Service Alerts</a>'
     navigation += "</div>"
 
 var server = http.createServer(function (req, res){
+    read ('styles.css', function (data) {
+        styles = data;
+    }, function (error) {
+        console.log (error);
+    })
+    read ('function.js', function (data) {
+        functions = data;
+    }, function (error) {
+        console.log (error);
+    })
+
     dispatcher.dispatch(req, res);
 });
 
@@ -95,22 +109,12 @@ dispatcher.onGet("/alerts", function(req, res) {
 
 dispatcher.onGet("/styles.css", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/css'});
-
-    read ('styles.css', function (data) {
-        res.end(data);
-    }, function (error) {
-        console.log (error);
-    })
+    res.end(styles);
 })
 
 dispatcher.onGet("/function.js", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/javascript'});
-
-    read ('function.js', function (data) {
-        res.end(data);
-    }, function (error) {
-        console.log (error);
-    })
+    res.end(functions);
 })
 
 function read (filename, success_callback, error_callback) {

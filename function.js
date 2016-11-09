@@ -47,3 +47,10 @@ $(".nav a").each (function (index, item) {
     $(this).addClass("selected")
   }
 })
+
+// toggle more details on delayed trains
+$(".delayLink").each (function (index, item) {
+  $(item).bind ("click", function () {
+    $(item).parent().find(".messageDisrp").toggle();
+  })
+})

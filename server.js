@@ -90,7 +90,7 @@ dispatcher.onGet("/alerts", function(req, res) {
                 html += '<meta name="viewport" content="width=device-width, initial-scale=1">'
                 html += '<meta http-equiv="Refresh" content="60" />'
                 html += '</head><body>'
-                html += '<div class="gridStatusTrain" style="width: 263px">'
+                html += '<div class="gridStatusTrain">'
                 html += $("#serviceTable").html()
                 html += "</div>"
                 html += navigation

@@ -51,10 +51,10 @@ dispatcher.onGet("/departures", function(req, res) {
                 html += '<meta name="viewport" content="width=device-width, initial-scale=1">'
                 html += '<meta http-equiv="Refresh" content="60" />'
                 html += '</head><body>'
-                html += '<div class="tbldiv" style="width: 700px">'
+                html += '<div class="tbldiv">'
                 html += $(".leftContainerHome").find (".tbldiv").html()
                 html += "</div>"
-                html += '<div class="tbldiv data" style="width: 700px">'
+                html += '<div class="tbldiv data">'
                 html += $(".leftContainerHome").find (".tbldiv").next().html()
                 html += "</div>"
                 html += "<div class='nav-level-2'>"

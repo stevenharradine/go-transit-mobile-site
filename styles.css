@@ -31,3 +31,7 @@ html, body {
 	bottom: 65px;
 	z-index: 100;
 }
+
+.gridStatusWidthOne {
+    vertical-align: top;
+}
